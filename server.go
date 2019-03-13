@@ -16,5 +16,5 @@ func main() {
 	sub.Methods("PUT").Path("/companies/{name}").HandlerFunc(handler.UpdateCompany)
 	sub.Methods("DELETE").Path("/companies/{name}").HandlerFunc(handler.DeleteCompany)
 
-	log.Fatal(http.ListenAndServe(":3000", router))
+	log.Fatal(http.ListenAndServe(":8080", router))
 }
