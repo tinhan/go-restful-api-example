@@ -8,7 +8,7 @@ WORKDIR "/go/src/github.com/tinhan/go-restful-api-example"
 #RUN go get -v -t  .
 RUN set -x && \
     go get github.com/gorilla/mux && \  
-    go get github.com/kkamdooong/go-restful-api-example && \ 
+    go get github.com/kkamdooong/go-restful-api-example
  
 
 RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build  -o /go-restful-api-example
