@@ -1,8 +1,8 @@
-
-    
 FROM golang:1.9-alpine as build-stage
 WORKDIR /go/src/example
 COPY *.go .
+RUN go get github.com/gorilla/mux
+RUN go get github.com/kkamdooong/go-restful-api-example
 RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o main .
 
 FROM scratch
