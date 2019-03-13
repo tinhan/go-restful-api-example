@@ -1,8 +1,31 @@
-FROM golang:1.9-alpine as build-stage
-WORKDIR /go/src/example
-COPY *.go .
-RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o main .
+FROM golang:1.10.2 AS builder
 
+RUN go version
+
+COPY . "/go/src/github.com/tinhan/go-restful-api-example"
+WORKDIR "/go/src/github.com/tinhan/go-restful-api-example"
+
+#RUN go get -v -t  .
+RUN set -x && \
+    go get github.com/gorilla/mux && \  
+    go get github.com/kkamdooong/go-restful-api-example && \ 
+    go get github.com/golang/dep/cmd/dep && \
+    dep ensure -v
+
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build  -o /your-app
+
+CMD ["/go-restful-api-example"]
+
+EXPOSE 8000
+
+
+
+#########
+# second stage to obtain a very small image
 FROM scratch
-COPY --from=build-stage /go/src/example/main /
-CMD ["/main"]
+
+COPY --from=builder /go-restful-api-example .
+
+EXPOSE 8000
+
+CMD ["/go-restful-api-example"]
