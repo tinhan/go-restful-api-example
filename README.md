@@ -4,9 +4,9 @@ For simplifying code, this example uses a mock database that is `map[string]inte
 
 ## Install and Run
 ```shell
-$ go get github.com/kkamdooong/go-restful-api-example
+$ go get github.com/tinhan/go-restful-api-example
 
-$ cd $GOPATH/src/github.com/kkamdooong/go-restful-api-example
+$ cd $GOPATH/src/github.com/tinhan/go-restful-api-example
 $ go build
 $ ./go-restful-api-example
 ```
